@@ -33,6 +33,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.app.ActivityCompat
+import androidx.core.app.ActivityCompat.startActivityForResult
 import androidx.core.content.ContextCompat
 import com.example.calcintent.ui.theme.CalcIntentTheme
 
@@ -68,7 +69,7 @@ fun Intent() {
             onClick = {
                 val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
 
-                context.startActivity(takePictureIntent, 1)
+                startActivityForResult(context as Activity,takePictureIntent,1,null)
             },
             colors = ButtonDefaults.buttonColors(Color.Blue),
             shape = RoundedCornerShape(16.dp),
@@ -138,7 +139,7 @@ fun Intent() {
         OutlinedButton(
             onClick = {
                 val simToolKitLaunchIntent =
-                    applicationContext.packageManager.getLaunchIntentForPackage("com.android.stk")
+                    context.packageManager.getLaunchIntentForPackage("com.android.stk")
 
                 simToolKitLaunchIntent?.let { context.startActivity(it) }
             },
